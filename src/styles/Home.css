@@ -1,0 +1,140 @@
+.home {
+    min-height: 100vh;
+    background-color: white;
+  }
+  
+  .hero-section {
+    background: #d1d5db;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .hero-content {
+    width: 100%;
+  }
+  
+  .breadcrumb {
+    background: transparent;
+    padding: 16px 6rem;
+  }
+  
+  .breadcrumb-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+  }
+  
+  .breadcrumb-item {
+    color: #6b7280;
+  }
+  
+  .breadcrumb-item.active {
+    color: #007bff;
+    font-weight: 500;
+  }
+  
+  .breadcrumb-separator {
+    color: #d1d5db;
+  }
+  
+  .main-content {
+    padding: 24px 6rem;
+    gap: 1rem;
+  }
+  
+  .content-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  
+  .products-section {
+    background: transparent;
+    padding: 0;
+  }
+  
+  .products-header {
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .products-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .view-controls {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .view-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #d1d5db;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #6b7280;
+  }
+  
+  .view-btn:hover {
+    border-color: #007bff;
+    color: #007bff;
+  }
+  
+  .view-btn.active {
+    background: #007bff;
+    border-color: #007bff;
+    color: white;
+  }
+  
+  @media (max-width: 768px) {
+    .hero-section {
+      height: 120px;
+      width: 100%;
+    }
+  
+    .content-layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  
+    .products-header {
+      flex-direction: column;
+      gap: 16px;
+      align-items: stretch;
+    }
+  
+    .products-controls {
+      flex-direction: column;
+      gap: 16px;
+      align-items: stretch;
+    }
+  
+    .view-controls {
+      justify-content: center;
+    }
+  
+    .breadcrumb {
+      padding: 12px 0;
+    }
+  
+    .main-content {
+      padding: 16px 0 0;
+    }
+  }
+  
