@@ -6,11 +6,6 @@ import { User, Search, ShoppingCart } from 'lucide-react'
 const Header = ({ onSearch, searchTerm }) => {
     const [showMobileSearch, setShowMobileSearch] = useState(false)
 
-
-    const handleSearchChange = (e) => {
-        onSearch(e.target.value)
-    }
-
     return (
         <>
             <header className="header">
@@ -37,7 +32,7 @@ const Header = ({ onSearch, searchTerm }) => {
                                 placeholder="Search Here..."
                                 className="search-input"
                                 value={searchTerm}
-                                onChange={handleSearchChange}
+                                onChange={(e)=>onSearch(e.target.value)}
                             />
                         </div>
                     </div>
@@ -88,7 +83,7 @@ const Header = ({ onSearch, searchTerm }) => {
                             placeholder="Search here..."
                             className="mobile-search-input"
                             value={searchTerm}
-                            onChange={handleSearchChange}
+                            onChange={(e)=>onSearch(e.target.value)}
                         />
                     </div>
                 )}

@@ -27,9 +27,9 @@ const Home = () => {
         fetchProducts()
     }, [])
 
-    useEffect(()=>{
+    useEffect(() => {
         filterAndSortProduct()
-    },[products, searchTerm, selectedCategory, priceRange, selectedRating, sortBy])
+    }, [products, searchTerm, selectedCategory, priceRange, selectedRating, sortBy])
 
     const fetchProducts = async () => {
         try {
@@ -44,22 +44,21 @@ const Home = () => {
 
     const handleFilterToggle = () => {
         setIsFilterOpen(!isFilterOpen)
-      }
-    
-      const handleFilterClose = () => {
+    }
+
+    const handleFilterClose = () => {
         setIsFilterOpen(false)
-      }
+    }
 
     const filterAndSortProduct = () => {
         let filtered = [...products]
 
         if (searchTerm) {
-            console.log(searchTerm, 'khflkahlkahla');
             filtered = filtered.filter(
-              (product) =>
-                product.title.toLowerCase().includes(searchTerm.toLowerCase())
+                (product) =>
+                    product.title.toLowerCase().includes(searchTerm.toLowerCase())
             );
-          }
+        }
 
         if (selectedCategory) {
             filtered = filtered.filter((product) => product.category.includes(selectedCategory))
@@ -71,23 +70,24 @@ const Home = () => {
         })
 
         if (selectedRating > 0) {
-            filtered = filtered.filter((product) => (product.rating?.rate || 4.5) >= selectedRating)
-          }
-      
-          filtered.sort((a, b) => {
+            console.log(selectedRating, 'this is the rating we got herere')
+            filtered = filtered.filter((product) => (product.rating?.rate || 4.5) >= selectedRating && (product.rating?.rate || 4.5) <= selectedRating + 1)
+        }
+
+        filtered.sort((a, b) => {
             switch (sortBy) {
-              case "price-low":
-                return a.price - b.price
-              case "price-high":
-                return b.price - a.price
-              case "rating":
-                return (b.rating?.rate || 4.5) - (a.rating?.rate || 4.5)
-              case "newest":
-                return b.id - a.id
-              default: 
-                return (b.rating?.count || 121) - (a.rating?.count || 121)
+                case "price-low":
+                    return a.price - b.price
+                case "price-high":
+                    return b.price - a.price
+                case "rating":
+                    return (b.rating?.rate || 4.5) - (a.rating?.rate || 4.5)
+                case "newest":
+                    return b.id - a.id
+                default:
+                    return (b.rating?.count || 121) - (a.rating?.count || 121)
             }
-          })
+        })
 
         setFilteredProducts(filtered)
         setCurrentPage(1)
@@ -112,17 +112,32 @@ const Home = () => {
 
     const handleSortChange = (sort) => {
         setSortBy(sort)
-      }
+    }
 
     const handlePageChange = (page) => {
         setCurrentPage(page)
         window.scrollTo({ top: 0, behavior: "smooth" })
     }
 
+    const handleCloseFilter = () => {
+        setFilteredProducts(products)
+        setSelectedCategory("")
+    }
+
     const totalPages = Math.ceil(filteredProducts.length / productsPerPage)
     const startIndex = (currentPage - 1) * productsPerPage
     const endIndex = startIndex + productsPerPage
     const currentProducts = filteredProducts.slice(startIndex, endIndex)
+
+
+    if (loading) {
+        return (
+            <div className="loading-wrapper">
+                <div className="spinner"></div>
+            </div>
+        )
+    }
+
 
 
     return (
@@ -150,7 +165,7 @@ const Home = () => {
                     <div className="container">
                         <div className="content-layout">
                             <FilterSidebar
-                                isOpen={isFilterOpen} 
+                                isOpen={isFilterOpen}
                                 onClose={handleFilterClose}
                                 selectedCategory={selectedCategory}
                                 onCategoryChange={handleCategoryChange}
@@ -158,6 +173,7 @@ const Home = () => {
                                 onPriceRangeChange={handlePriceRangeChange}
                                 selectedRating={selectedRating}
                                 onRatingChange={handleRatingChange}
+                                onClearFilter={handleCloseFilter}
                             />
 
                             <div className="products-section">
@@ -173,15 +189,21 @@ const Home = () => {
                                                 </svg>
                                             </button>
                                             <button className="view-btn" onClick={handleFilterToggle}>
-                                               <Filter />
+                                                <Filter />
                                             </button>
                                         </div>
 
-                                        <SortDropDown sortBy={sortBy} onSortChange={handleSortChange}/>
+                                        <SortDropDown sortBy={sortBy} onSortChange={handleSortChange} />
                                     </div>
                                 </div>
 
-                                <ProductGrid productData={currentProducts} />
+                                {currentProducts.length > 0 ? (
+                                    <ProductGrid productData={currentProducts} />
+                                ) : (
+                                    <div className="no-products-message">
+                                        <p>No products found matching your filters.</p>
+                                    </div>
+                                )}
                                 {totalPages > 1 && (
                                     <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
                                 )}

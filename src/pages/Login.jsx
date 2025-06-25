@@ -57,7 +57,7 @@ const Login = () => {
       if(response.data){
         localStorage.setItem('authToken',response.data.token)
         toast.success('Login successfull')
-        navigate('/home')
+        navigate('/')
       }else{
         console.log(error)
       }

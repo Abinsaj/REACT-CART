@@ -10,9 +10,9 @@ const FilterSidebar = ({
     priceRange,
     onPriceRangeChange,
     selectedRating,
-    onRatingChange
+    onRatingChange,
+    onClearFilter
 }) => {
-    console.log(isOpen,';this is hte opene')
     const categories = [
         { name: "Womens Clothing", checked: true, value: `women's clothing` },
         { name: "Mens Clothing", checked: false, value: `men's clothing` },
@@ -23,7 +23,6 @@ const FilterSidebar = ({
     const [isCategoryOpen, setIsCategoryOpen] = useState(true)
     const [isPriceOpen, setIsPriceOpen] = useState(true)
     const [isRatingOpen, setIsRatingOpen] = useState(true)
-    const [brandSearch, setBrandSearch] = useState("")
 
     const ratings = [5, 4, 3, 2, 1];
 
@@ -57,21 +56,12 @@ const FilterSidebar = ({
 
                 <div className="filter-header">
                     <h3>Filter</h3>
-                    <span className="advanced-link">Advanced</span>
+                    <span className="advanced-link" onClick={()=>onClearFilter()}>Clear</span>
                 </div>
 
                 <div className="filter-section">
                     <div className="filter-section-header" onClick={() => setIsCategoryOpen(!isCategoryOpen)}>
                         <h4>Category</h4>
-                        <svg className="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none">
-                            <path
-                                d="M6 9l6 6 6-6"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                        </svg>
                     </div>
                     {isCategoryOpen && (
 

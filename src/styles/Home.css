@@ -101,6 +101,35 @@
     border-color: #007bff;
     color: white;
   }
+
+  /* ------fallback UI------- */
+  .no-products-message {
+    text-align: center;
+    justify-content: center;
+    padding: 10rem 0;
+    color: #555;
+  }
+
+  .loading-wrapper {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .spinner {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #eee;
+    border-top: 5px solid #0d6efd;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
   
   @media (max-width: 768px) {
     .hero-section {

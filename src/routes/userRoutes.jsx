@@ -12,7 +12,7 @@ const UserRoutes = () => {
         <Route path="/register" element={<Registration />} />
         <Route path="/login" element={<Login />} />
 
-        <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
+        <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
         <Route path="/product/:id" element={<PrivateRoute><ProductDetails /></PrivateRoute>} />
 
       </Routes>

@@ -5,7 +5,8 @@ import { useParams, Link } from "react-router-dom"
 import Header from "../components/Header"
 import "../styles/ProductDetails.css"
 import { getProductDetails } from "../services/userAxios"
-import { toast } from "sonner"
+import { ArrowLeft } from "lucide-react"
+
 
 const ProductDetails = () => {
   const { id } = useParams()
@@ -99,9 +100,11 @@ const ProductDetails = () => {
       </div>
 
       <div className="details-container">
+        <ArrowLeft/>
         <div className="container">
+
           <div className="details-grid">
-            {/* Product Images */}
+
             <div className="details-images">
               <div className="details-main-image">
                 <img

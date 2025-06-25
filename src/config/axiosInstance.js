@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-const url = 'https://fakestoreapi.com'
+const BASE_URL = import.meta.env.VITE_BACKEND_URL
 
 const axiosInstance = axios.create({
-    baseURL: url,
+    baseURL: BASE_URL,
 })
 
 export default axiosInstance
